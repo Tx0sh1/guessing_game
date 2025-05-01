@@ -1,5 +1,4 @@
 use std::io;
-//use rand::Rng;
 
 fn main() {
     println!("Guess the number!");
@@ -40,7 +39,6 @@ fn main() {
             println!("You win!");
             break;
         }
-        //println!("The secret number was: {}", secret_number);
         }
     
 }
