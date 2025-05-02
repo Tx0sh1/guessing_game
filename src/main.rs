@@ -20,27 +20,30 @@ fn main() {
 
         println!("you guessed {}", guess);
 
-        //todo - change "if else" logic to "match"
-        if guess < secret_number {
-            println!("Too small!");
-            lives = lives - 1;
-            println!("you have {} lives remaining", lives);
-                if lives == 0{
-                    println!("you are out of lives, game over!!");
+        match guess {
+            guess if guess < secret_number => {
+                lives = lives - 1;
+                if lives > 0 {
+                    println!("Too small! You have {} lives left.", lives);
+                } else {
+                    println!("You're out of lives, game over.");
                     break;
                 }
-        } else if guess > secret_number {
-            println!("Too big!");
-            lives = lives - 1;
-            println!("you have {} lives remaining", lives);
-                if lives == 0{
-                    println!("you are out of lives, game over!!");
+            },
+            guess if guess > secret_number => {
+                lives = lives - 1;
+                if lives > 0 {
+                    println!("Too big! You have {} lives left.", lives);
+                } else {
+                    println!("You're out of lives, game over.");
                     break;
                 }
-        } else {
-            println!("You win!");
-            break;
-        }
+            },
+            _ => {
+                println!("You win!");
+                break;
+            }
         }
     
+    }
 }
