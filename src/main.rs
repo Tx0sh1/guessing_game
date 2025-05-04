@@ -16,32 +16,36 @@ fn main() {
             .read_line(&mut guess)
             .expect("failed to read line");
 
-        let guess: u32 = guess.trim().parse().expect("Please type a number!"); //todo - handle invalid input without panicking
-
-        println!("you guessed {}", guess);
-
-        match guess {
-            guess if guess < secret_number => {
-                lives = lives - 1;
-                if lives > 0 {
-                    println!("Too small! You have {} lives left.", lives);
-                } else {
-                    println!("You're out of lives, game over.");
-                    break;
+        match guess.trim().parse::<u32>() {
+            Ok(num) => {
+                match num {
+                    num if num < secret_number => {
+                        lives = lives - 1;
+                        if lives > 0 {
+                            println!("Too small! You have {} lives left.", lives);
+                        } else {
+                            println!("You're out of lives, game over.");
+                            break;
+                        }
+                    },
+                    num if num > secret_number => {
+                        lives = lives - 1;
+                        if lives > 0 {
+                            println!("Too big! You have {} lives left.", lives);
+                        } else {
+                            println!("You're out of lives, game over.");
+                            break;
+                        }
+                    },
+                    _ => {
+                        println!("You win!");
+                        println!("you guessed {}", num);
+                        break;
+                    }
                 }
-            },
-            guess if guess > secret_number => {
-                lives = lives - 1;
-                if lives > 0 {
-                    println!("Too big! You have {} lives left.", lives);
-                } else {
-                    println!("You're out of lives, game over.");
-                    break;
-                }
-            },
-            _ => {
-                println!("You win!");
-                break;
+            }
+            Err(_e) =>{
+                println!("Please type a number!");
             }
         }
     
