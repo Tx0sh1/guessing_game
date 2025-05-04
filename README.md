@@ -50,7 +50,7 @@ cargo run
 
 - ~~Replace `if` chains with `match` expressions~~
 - Refactor logic into functions
-- Handle invalid input more gracefully
+- ~~Handle invalid input more gracefully~~
 - Add replay option when game ends
 
 ---
